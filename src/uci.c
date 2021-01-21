@@ -3,8 +3,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "owipcalc.h"
-
 LIST_HEAD(prefix_list);
 
 int show_config_entry(char *path) {

@@ -9,7 +9,8 @@
 #include <libubox/blobmsg_json.h>
 #include <libubus.h>
 
-#include "owipcalc.h"
+#include <owipcalc.h>
+
 #include "uci.h"
 
 static struct ubus_context *ctx;

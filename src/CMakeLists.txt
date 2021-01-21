@@ -5,10 +5,10 @@ ADD_DEFINITIONS(-Os -Wall -Werror --std=gnu99 -Wmissing-declarations -Wno-unknow
 
 SET(CMAKE_SHARED_LIBRARY_LINK_C_FLAGS "")
 
-SET(SOURCES main.c uci.c owipcalc.c)
+SET(SOURCES main.c uci.c)
 
 SET(LIBS
-        ubox ubus json-c blobmsg_json uci)
+        ubox ubus json-c blobmsg_json uci owipcalc)
 
 ADD_EXECUTABLE(babeld-ids ${SOURCES})
 

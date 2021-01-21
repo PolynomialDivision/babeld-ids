@@ -19,7 +19,7 @@ define Package/babeld-ids
   CATEGORY:=Network
   TITLE:=Babel Intrusion Detection
   URL:=https://github.com/PolynomialDivision/babeld-ids.git
-  DEPENDS:=+libubus +libubox +libblobmsg-json +libuci +libgcrypt +libiwinfo +umdns
+  DEPENDS:=+libubus +libubox +libblobmsg-json +libuci +libgcrypt +libiwinfo +umdns +libowipcalc
 endef
 
 define Package/babeld-ids/description
