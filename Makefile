@@ -19,7 +19,7 @@ define Package/babeld-ids
   CATEGORY:=Network
   TITLE:=Babel Intrusion Detection
   URL:=https://github.com/PolynomialDivision/babeld-ids.git
-  DEPENDS:=+libubus +libubox +libblobmsg-json +libuci +libgcrypt +libiwinfo +umdns +libowipcalc
+  DEPENDS:=+libubus +libubox +libblobmsg-json +libuci +libowipcalc
 endef
 
 define Package/babeld-ids/description
@@ -34,6 +34,8 @@ define Package/babeld-ids/install
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/babeld-ids $(1)/usr/sbin/babeld-ids
 	$(INSTALL_DIR) $(1)/etc/config
 	$(INSTALL_CONF) ./config/babeld-ids.config $(1)/etc/config/babeld-ids
+	$(INSTALL_DIR) $(1)/etc/babeld-ids
+	$(INSTALL_BIN) ./config/script.sh $(1)/etc/babeld-ids/script.sh
 endef
 
 $(eval $(call BuildPackage,babeld-ids))

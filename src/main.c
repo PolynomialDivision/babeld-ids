@@ -56,11 +56,6 @@ static bool check_cidr(struct cidr *a) {
 static int babeld_notify(struct ubus_context *ctx, struct ubus_object *obj,
                          struct ubus_request_data *req, const char *method,
                          struct blob_attr *msg) {
-  /*char *str;
-  str = blobmsg_format_json(msg, true);
-  printf("Method new: %s : %s\n", method, str);
-  free(str);*/
-
   struct blob_attr *attr;
   struct blobmsg_hdr *hdr;
   int len;
@@ -74,14 +69,16 @@ static int babeld_notify(struct ubus_context *ctx, struct ubus_object *obj,
     if (strchr(dst_prefix, ':')) {
       struct cidr *b;
       b = cidr_parse6(dst_prefix);
-      if (check_cidr(b))
+      if (check_cidr(b)) {
+        if (fork() == 0) {
+          execl("/etc/babeld-ids/script.sh", "script.sh", dst_prefix, NULL);
+          perror("execl script.sh");
+          exit(0);
+        }
         printf("Prefix in babel network announced that is in watchlist: "
                "Method: %s Dst-Prefix: %s\n",
                method, dst_prefix);
-      // it would be awesome to have here some scripts running
-      // https://github.com/br101/pingcheck/blob/master/scripts.c
-      else
-        printf("Not!\n");
+      }
     }
   }
 
